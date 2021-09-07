@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">{{title}}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            {{#if isLogin}}
+                    <li>
+                        <a class="nav-link {{link}}" href="/user">User</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{link}}" aria-current="page" href="/brand">Brand</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{link}}" href="/type">Type</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{link}}" href="/car">Car</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{link}}" href="/rent">Rent</a>
+                    </li>
+                {{/if}}
+                {{#if isLogin}}
+                test
+                {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link {{link}}" href="/login">Admin</a>
+                    </li>
+                {{/if}}
+                </ul>
+                <div class="d-grid gap-2 d-sm-flex">
+                {{#if isLogin}}
+                <a href="/logout" class="text-decoration-none text-light"><button type="button" class="btn btn-danger shadow">Logout</button></a>             
+                {{/if}}
+            </div>
+            </div>
+        </div>
+    </nav>

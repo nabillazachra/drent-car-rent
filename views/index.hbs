@@ -1,0 +1,38 @@
+{{> header}}
+{{> navbar}}
+
+<div class="px-4 py-5 my-5 text-center shadow p-3 mb-5 rounded">
+    <h1 class="display-5 fw-bold">Cheapest Rental, period.</h1>
+    <p class="lead mb-4">
+        You can rent a car anytime and anywhere. Book now, pay later, and use after. This is your best choice ever, dude.
+    </p>
+    {{#if isLogin}}
+    <h1>Welcome!</h1>
+    {{else}}
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+        <button type="button" class="btn btn-outline-secondary shadow btn-lg px-4"><a href="/loginUser" class="text-decoration-none text-dark">Login</a></button>
+        <button type="button" class="btn btn-success shadow btn-lg px-4 gap-3"><a href="/signupUser" class="text-decoration-none text-light">Sign Up</a></button>
+    </div>
+    {{/if}}
+</div>
+{{#if isLogin}}
+<div class="d-flex flex-row justify-content-center mb-3">
+    <button class="btn btn-success text-uppercase btn-lg" ><a href="/add-car" class="text-decoration-none text-light">Add Car</a></button>
+</div>
+{{else}}
+<h1 class="text-center">Car List.</h1>
+{{/if}}
+<div class="container mb-5 d-flex flex-wrap justify-content-evenly flex-row">
+    {{#each car}}
+    <div class="card card-hover mt-5" style="width: 18rem;">
+        <img src="{{this.photo}}" class="card-img-top" alt="{{this.name}}">
+        <div class="card-body shadow">
+            <a href="/detailCar/{{this.id}}" class="text-decoration-none"><h5 class="text-dark fw-bold">{{this.name}} - {{this.plat_number}}</h5></a>
+            <h5 class="text-dark fw-bold">{{this.brand}} - {{this.type}}</h5>
+            <p class="card-text">Rp. {{this.price}}</p>
+        </div>
+    </div>
+    {{/each}}
+</div>
+
+{{> footer}}

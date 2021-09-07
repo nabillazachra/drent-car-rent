@@ -1,0 +1,62 @@
+{{> header}}
+{{#if message}}
+    <div class="alert alert-{{message.type}}" role="alert">
+        {{message.message}}
+    </div>
+{{/if}}
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/list">{{title}}</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {{#if isLogin}}
+                test
+                {{else}}
+                    <li class="nav-item">
+                        <a class="nav-link {{link}}" href="/login">Admin</a>
+                    </li>
+                {{/if}}
+                </ul>
+                <div class="d-grid gap-2 d-sm-flex">
+                {{#if isLogin}}
+                <a href="/logout" class="text-decoration-none text-light"><button type="button" class="btn btn-danger shadow">Logout</button></a>             
+                {{/if}}
+            </div>
+            </div>
+        </div>
+</nav>
+<div class="container pt-5 pb-3">
+    <form action="/user-rent" method="POST" enctype="multipart/form-data">
+    <input type="hidden" name="car_id" id="car_id" value="{{car.id}}">
+        <h1 class="h3 mb-3 fw-bold">{{title}}</h1>
+        <div class="mb-3">
+            <label for="name" class="form-label">Car Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Input Car name" value="{{car.name}}" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="plat_number" class="form-label">Plat Number</label>
+            <input type="text" class="form-control" name="plat_number" id="plat_number" value="{{car.plat_number}}" placeholder="Input plat number" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price</label>
+            <input type="number" class="form-control" name="price" id="price" value="{{car.price}}" placeholder="Input Price" readonly>
+        </div>
+        <div class="mb-3">
+            <label for="borrow_date" class="form-label">Borrow Date</label>
+            <input type="date" class="form-control" name="borrow_date" id="borrow_date" required>
+        </div>
+        <div class="mb-3">
+            <label for="return_date" class="form-label">Return Date</label>
+            <input type="date" class="form-control" name="return_date" id="return_date" required>
+        </div>
+        <div class="mb-3">
+            <label for="sub_total" class="form-label">Subtotal</label>
+            <input type="number" class="form-control" name="sub_total" id="sub_total" placeholder="Input Subtotal" required>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+</div>
+{{> footer}}

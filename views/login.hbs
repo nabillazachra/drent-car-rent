@@ -1,0 +1,25 @@
+{{> header}}
+
+{{#if message}}
+    <div class="alert alert-{{message.type}}" role="alert">
+        {{message.message}}
+    </div>
+{{/if}}
+
+{{> navbar}}
+<div class="container pt-5 m-login">
+    <form action="/login" method="POST">
+        <h1 class="h3 mb-3 fw-bold">Sign In</h1>
+    <div class="mb-3">
+        <label for="email" class="form-label">Email address</label>
+        <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="name@mail.com" value="{{user.email}}">
+        <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" name="password" id="password" placeholder="Type password here" value="{{user.password}}">
+    </div>
+    <button type="submit" class="btn btn-success px-4 gap-3">Login</button>
+    </form>
+</div>
+{{> footer}}

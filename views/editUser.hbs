@@ -1,0 +1,48 @@
+{{> header}}
+{{#if message}}
+    <div class="alert alert-{{message.type}}" role="alert">
+        {{message.message}}
+    </div>
+{{/if}}
+{{> navbar}}
+<div class="container pt-5 pb-3">
+    <form action="/edit-user" method="POST">
+    <input type="hidden" value="{{user.id}}" name="id">
+        <h1 class="h3 mb-3 fw-bold">Edit User</h1>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email address</label>
+            <input type="email" class="form-control" name="email" id="email" placeholder="name@email.com" value="{{user.email}}">
+        </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="text" class="form-control" name="password" id="password" placeholder="Password" value="{{user.password}}">
+        </div>
+        <div class="mb-3">
+            <label for="no_ktp" class="form-label">NIK</label>
+            <input type="text" class="form-control" name="no_ktp" id="no_ktp" value="{{user.no_ktp}}" placeholder="Input your ktp number">
+        </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" name="name" id="name" placeholder="Type your name" value="{{user.name}}">
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="address">Address</label>
+            <textarea class="form-control" name="address" id="address" rows="4" placeholder="Input address">{{user.address}}</textarea>
+        </div>
+        <div class="mb-3">
+            <label for="phone" class="form-label">Phone</label>
+            <input type="number" class="form-control" name="phone" id="phone" value="{{user.phone}}" placeholder="Input your phone number">
+        </div>
+        <div class="mb-3">
+            <label for="select" class="form-label">Status</label>
+            <select class="form-select" aria-label="Default select" name="status" id="select">
+                {{#select user.status}}
+                <option value="0">Admin</option>
+                <option value="1">User</option>
+                {{/select}}
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{{> footer}}

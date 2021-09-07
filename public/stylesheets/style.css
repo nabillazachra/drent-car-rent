@@ -1,0 +1,20 @@
+* {
+    box-sizing: border-box !important;
+}
+.m-login {
+    padding: 20px !important;
+    margin: 100px auto !important;
+}
+
+.m-genre {
+    padding: 20px !important;
+    margin: 130px auto !important;
+}
+
+.pos-r {
+    float: right;
+}
+
+.mar-bot {
+    margin-bottom: -25px !important;
+}
