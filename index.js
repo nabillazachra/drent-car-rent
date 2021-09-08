@@ -947,6 +947,7 @@ app.get('/signupUser', function(request, response) {
 
 app.post('/signupUser', function(request, response){
   const {email, password, no_ktp, name, address, phone} = request.body;
+  var status = 2;
 
   if(name == '' || email == '' || password == '') {
     request.session.message = {
@@ -956,7 +957,7 @@ app.post('/signupUser', function(request, response){
     return response.redirect('/signupUser');
   } 
 
-  const query = `INSERT INTO tb_user (email, password, no_ktp, name, address, phone, status) VALUES ("${email}", "${password}", "${no_ktp}", "${name}", "${address}", "${phone}", "2");`;
+  const query = `INSERT INTO tb_user (email, password, no_ktp, name, address, phone, status) VALUES ("${email}", "${password}", "${no_ktp}", "${name}", "${address}", "${phone}", "${status}");`;
 
   dbConn.getConnection(function(err, conn){
     if(err) throw err;
@@ -967,7 +968,7 @@ app.post('/signupUser', function(request, response){
         type: 'success',
         message: 'Sign up has success!',
       };
-      response.redirect('/login');
+      response.redirect('/loginUser');
     });
     conn.release();
   });
@@ -1030,7 +1031,7 @@ app.post('/loginUser', function (request, response) {
 //index user
 app.get('/list', function (request, response) {
   const title = 'Drents';
-  const query = 'SELECT t1.*, t2.id as typeId, t2.name as type, t3.id as brandId, t3.name as brand FROM tb_car t1 join tb_type t2 on t1.type_id=t2.id join tb_brand t3 on t1.brand_id=t3.id ORDER BY id DESC';
+  const query = 'SELECT t1.*, t2.id as typeId, t2.name as type, t3.id as brandId, t3.name as brand FROM tb_car t1 join tb_type t2 on t1.type_id=t2.id join tb_brand t3 on t1.brand_id=t3.id WHERE t1.status != "1" ORDER BY id DESC';
 
   dbConn.getConnection(function (err, conn) {
     if (err) throw err;
@@ -1115,6 +1116,11 @@ app.post('/user-rent', uploadFile('photo'), function (request, response) {
     });
     conn.release();
   });
+});
+
+app.get('/logoutUser', function (request, response) {
+  request.session.destroy();
+  response.redirect('/list');
 });
 
 
